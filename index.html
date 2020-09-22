@@ -10,16 +10,28 @@
   <body>
     <!-- TOP BAR -->
     <div class="top-bar">
-      <input type="text" name="search" value="Search Title">
-      <button type="button" name="btn-search"></button>
+      <input type="text" name="search" placeholder="Search title">
+      <button class="btn-search" type="button" name="btn-search">Search</button>
     </div>
     <!-- TOP BAR -->
 
+    <!-- SEARCH RESULT -->
+    <div class="container-search-result">
+      <ul class="list-search-result"></ul>
+    </div>
+    <!--// SEARCH RESULT -->
+
     <!-- TEMPLATE HANDLEBARS -->
-    <script id="day-template" type="text/x-handlebars-template">
-      <li class="day" data-date="{{dateComplete}}">{{day}}<br><span class="redHoliday"></span> </li>
+    <script id="info-muvie-template" type="text/x-handlebars-template">
+      <li class="info-muvie">
+        <h3>Titolo: {{title}}</h3>
+        <h4>Titolo Originale: {{original_title}}</h4>
+        <h5>Lingua: {{original_language}}</h5>
+        <p>Voto Medio: {{vote_count}}</p>
+      </li>
     </script>
     <!--// TEMPLATE HANDLEBARS -->
+
 
     <script src="js/script.js" charset="utf-8"></script>
   </body>
