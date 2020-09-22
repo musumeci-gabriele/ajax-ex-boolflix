@@ -13,15 +13,15 @@ function renderMovie(movies){
   // CHIAMATA AL SERVER PER LA RICERCA DELLE INFO RICHIESTE
   $.ajax(
     {
-      "url": "https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false",
-      "data": {
+      "url" : "https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false",
+      "data" : {
         "api_key": "0dc314a9e6f7e554dbdb64c779cd9892",
         "query": "searchMovie",
         "language": "it"
       },
-      "method": "GET",
-      "success": function(data){
-        var moviesDb = data.result;
+      "method" : "GET",
+      "success" : function(data){
+        var moviesDb = data.results;
 
         var source = $("#info-movie-template").html();
         var template = Handlebars.compile(source);
