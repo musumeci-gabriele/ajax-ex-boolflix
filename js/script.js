@@ -11,6 +11,20 @@ $(document).ready(function(){
     return htmlStars;
   }
 
+  // FUNCTION FLAGS
+  var flags = ["es","de","fr","en","it"];
+  function changeFlag(language){
+    if (flags.includes(language)) {
+      var imgFlag = '<img src ="img/'+ language +'.svg">';
+      // imgFlag.addClass("img-flag");
+      return imgFlag;
+    }
+    else{
+      return language;
+    }
+  };
+
+
   // FUNCTION CALL TO SERVER FOR INFO ABOUT THE MOVIE
   function renderMovie(movies){
 
@@ -54,7 +68,7 @@ $(document).ready(function(){
       var context = {
         "title": movies[i].title,
         "original_title": movies[i].original_title,
-        "original_language": movies[i].original_language,
+        "original_language": changeFlag(movies[i].original_language),
         "vote_average": stars(movies[i].vote_average)
       };
 
