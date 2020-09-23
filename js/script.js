@@ -3,12 +3,15 @@ $(document).ready(function(){
   // FUNCTION STARS TO VOTE
   function stars(vote){
     var numStar = parseInt(Math.ceil((vote)/2));
+    var stars = $('<i class="fas fa-star"></i>');
+    stars.addClass("yellow");
+
     for (var i = 0; i < numStar; i++) {
-      numStar += $('<i class="fas fa-star"></i>').addClass("yellow");
+      numStar += stars;
     }
-    return numStar;
+    return stars;
   }
-  
+
   // FUNCTION CALL TO SERVER FOR INFO ABOUT THE MOVIE
   function renderMovie(movies){
 
