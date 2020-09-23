@@ -18,26 +18,7 @@ $(document).ready(function(){
             },
             "method" : "GET",
             "success" : function(data){
-              var moviesDb = data.results;
-
-              // LINK TO HANDLEBARS
-              var source = $("#info-movie-template").html();
-              var template = Handlebars.compile(source);
-
-              // INFO ABOUT THE MOVIE
-              for (var i = 0; i < moviesDb.length; i++) {
-                
-                var context = {
-                  "title": moviesDb[i].title,
-                  "original_title": moviesDb[i].original_title,
-                  "original_language": moviesDb[i].original_language,
-                  "vote_average": moviesDb[i].vote_average
-                };
-
-                var html = template(context);
-
-                $("#movies-list").append(html);
-              }
+              infoSuccess(data.results);
             },
             "error" : function() {
               alert("Errore!");
@@ -47,6 +28,29 @@ $(document).ready(function(){
       } else {
         alert("Non hai scritto nulla!");
       }
+  }
+  
+  //  FUNCTION HABDLEBARS
+  function infoSuccess(movies){
+
+    // LINK TO HANDLEBARS
+    var source = $("#info-movie-template").html();
+    var template = Handlebars.compile(source);
+
+    // INFO ABOUT THE MOVIE
+    for (var i = 0; i < movies.length; i++) {
+
+      var context = {
+        "title": movies[i].title,
+        "original_title": movies[i].original_title,
+        "original_language": movies[i].original_language,
+        "vote_average": movies[i].vote_average
+      };
+
+      var html = template(context);
+
+      $("#movies-list").append(html);
+    }
   }
 
   // EVENT CLICK ON SEARCH BUTTON
@@ -70,3 +74,6 @@ $(document).ready(function(){
   );
 
 });
+
+// APPUNTI  <i class="fas fa-star"></i> STELLA
+// https://api.themoviedb.org/3/search/tv CHIAMATA SERIE Tv
