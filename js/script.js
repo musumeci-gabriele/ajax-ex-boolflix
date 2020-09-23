@@ -1,5 +1,14 @@
 $(document).ready(function(){
 
+  // FUNCTION STARS TO VOTE
+  function stars(vote){
+    var numStar = parseInt(Math.ceil((vote)/2));
+    for (var i = 0; i < numStar; i++) {
+      numStar += $('<i class="fas fa-star"></i>').addClass("yellow");
+    }
+    return numStar;
+  }
+  
   // FUNCTION CALL TO SERVER FOR INFO ABOUT THE MOVIE
   function renderMovie(movies){
 
@@ -29,7 +38,7 @@ $(document).ready(function(){
         alert("Non hai scritto nulla!");
       }
   }
-  
+
   //  FUNCTION HABDLEBARS
   function infoSuccess(movies){
 
@@ -44,7 +53,7 @@ $(document).ready(function(){
         "title": movies[i].title,
         "original_title": movies[i].original_title,
         "original_language": movies[i].original_language,
-        "vote_average": movies[i].vote_average
+        "vote_average": stars(movies[i].vote_average)
       };
 
       var html = template(context);
