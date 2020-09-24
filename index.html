@@ -20,10 +20,10 @@
       <button class="btn-search" type="button" name="btn-search">Search</button>
     </div>
     <!-- TOP BAR -->
-    
+
     <!-- SEARCH RESULT -->
     <div class="container-search-result">
-      <ul id="movies-list"></ul>
+      <ul id="serch-list"></ul>
     </div>
     <!--// SEARCH RESULT -->
 
@@ -32,8 +32,9 @@
       <li class="info-movie">
         <h3>Titolo: {{title}}{{name}}</h3>
         <h4>Titolo Originale: {{original_title}}</h4>
-        <h5>Lingua: {{original_language}}</h5>
-        <p>Voto Medio: <strong id="vote-star">{{{vote_average}}}</strong></p>
+        <P>Lingua: {{{original_language}}}</P>
+        <p id="vote-star">Voto Medio:{{{vote_average}}} {{type}}</p>
+        <br>
       </li>
     </script>
     <!--// TEMPLATE HANDLEBARS -->
