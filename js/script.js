@@ -79,7 +79,7 @@ $(document).ready(function(){
         container = $("#series");
       }
 
-      // POSTER PRESENTE O NO
+      // POSTER
       if(results[i].poster_path == null ){
        var poster = "img/no-poster.jpg";
       }else{
@@ -102,9 +102,22 @@ $(document).ready(function(){
     }
   }
 
-  // la ricerca non produce risultati
+  // NOT FOUND RESEARCH
   function notFound(type){
-    alert("La ricerca non ha prodotto risultati")
+
+    var container;
+    if(type == "movie") {
+      container = $("#movie");
+    } else if (type == "tv"){
+      container = $("#tv");
+    }
+
+    // LINK TO HANDLEBARS NOT FOUND
+    var source = $("#not-found-template").html();
+    var template = Handlebars.compile(source);
+
+    var html = template();
+    container.append(html);
   }
 
 
