@@ -51,8 +51,7 @@ $(document).ready(function(){
 
   }
 
-
-  // FUNCTION CALL TO SERVER FOR INFO ABOUT THE SERIES TV
+  // FUNCTION CALL TO SERVER FOR INFO ABOUT THE TV SERIES
   function renderSeries(searchSeries){
 
     $.ajax(
@@ -78,7 +77,7 @@ $(document).ready(function(){
   //  FUNCTION HABDLEBARS
   function infoSuccess(type, results){
 
-    // LINK TO HANDLEBARS
+    // LINK TO HANDLEBARS FOR PRINT INFO
     var source = $("#info-movie-template").html();
     var template = Handlebars.compile(source);
 
@@ -90,7 +89,7 @@ $(document).ready(function(){
       if(type == "Film"){
         title = results[i].title;
         original_title = results[i].original_title;
-      } else if(type == "Serie tv"){
+      } else if(type == "Serie Tv"){
         title = results[i].name;
         original_title = results[i].original_name;
       }
@@ -100,22 +99,30 @@ $(document).ready(function(){
         "original_title": original_title,
         "original_language": changeFlag(results[i].original_language),
         "vote_average": stars(results[i].vote_average),
-        "type": type
+        "type": type,
+        "poster" : results[i].poster_path,
+        "overview" : results[i].overview
       };
 
       var html = template(context);
 
-      $("#serch-list").append(html);
-    }
-  }
+      // img
+       if(results[i].poster_path == null ){
+         var url = "img/no-image.svg";
+       }else{
+         var url = "https://image.tmdb.org/t/p/w185" + results[i].poster_path;
+       };
+       // /img
 
-  // FUNCTION CLEAR INPUT
-  function clearInput(){
-    if (searchMovie != ""){
-      $(".input-title").val("");
-      $("#search-list").html("");
-    } else {
-      alert("Non hai scritto nulla!");
+       if (type == "Film"){
+         $("#movie").append(html);
+       } else {
+         $("#series").append(html);
+
+       }
+
+      $("#search-list").append(html);
+
     }
   }
 
@@ -123,6 +130,8 @@ $(document).ready(function(){
   $(".btn-search").click(
     function(){
       var search = $(".input-title").val();
+      $(".input-title").val("");
+      $("#movie, #series").html("");
       // PRINT INFO ABOUT THE SEARCH
       renderMovie(search);
       renderSeries(search);
@@ -135,10 +144,13 @@ $(document).ready(function(){
     function(event) {
       if (event.which ==13){
         var search = $(".input-title").val();
+        $(".input-title").val(" ");
+        $("#movie, #series").html("");
 
         // PRINT INFO ABOUT THE SEARCH
         renderMovie(search);
         renderSeries(search);
+
 
 
       }

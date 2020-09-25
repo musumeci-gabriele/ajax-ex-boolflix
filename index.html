@@ -15,15 +15,27 @@
   <body>
 
     <!-- TOP BAR -->
-    <div class="top-bar">
-      <input class="input-title" type="text" name="search" placeholder="Search title">
-      <button class="btn-search" type="button" name="btn-search">Search</button>
-    </div>
+    <header class="top-bar">
+
+      <div class="title">
+         <h1>BOOLFLIX</h1>
+       </div>
+
+       <div class="find-title">
+         <input class="input-title" type="text" name="search" placeholder="Search title">
+         <button class="btn-search" type="button" name="btn-search">Search</button>
+       </div>
+
+    </header>
     <!-- TOP BAR -->
 
     <!-- SEARCH RESULT -->
     <div class="container-search-result">
-      <ul id="serch-list"></ul>
+      <h2>Movie</h2>
+      <ul id="movie"> </ul>
+
+      <h2>Series</h2>
+      <ul id="series"> </ul>
     </div>
     <!--// SEARCH RESULT -->
 
@@ -31,10 +43,12 @@
     <script id="info-movie-template" type="text/x-handlebars-template">
       <li class="info-movie">
         <h3>Titolo: {{title}}{{name}}</h3>
+        <img class = "poster" src="https://image.tmdb.org/t/p/w185{{poster}}" alt="">
         <h4>Titolo Originale: {{original_title}}</h4>
         <P>Lingua: {{{original_language}}}</P>
         <p id="vote-star">Voto Medio: {{{vote_average}}}</p>
         <p>Genere: {{type}}</p>
+        <p>{{overview}}</p>
         <br>
       </li>
     </script>
