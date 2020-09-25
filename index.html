@@ -18,12 +18,12 @@
     <header class="top-bar">
 
       <div class="title">
-         <h1>BOOLFLIX</h1>
+         <h1>BoolFlix</h1>
        </div>
 
        <div class="find-title">
-         <input class="input-title" type="text" name="search" placeholder="Search title">
-         <button class="btn-search" type="button" name="btn-search">Search</button>
+         <input id="input-title" type="text" name="search" placeholder="Search title">
+         <button id="btn-search" type="button" name="btn-search">Search</button>
        </div>
 
     </header>
@@ -43,7 +43,7 @@
     <script id="info-movie-template" type="text/x-handlebars-template">
       <li class="info-movie">
         <h3>Titolo: {{title}}{{name}}</h3>
-        <img class = "poster" src="https://image.tmdb.org/t/p/w185{{poster}}" alt="">
+        <img class = "poster" src="{{poster}}" alt="{{title}}">
         <h4>Titolo Originale: {{original_title}}</h4>
         <P>Lingua: {{{original_language}}}</P>
         <p id="vote-star">Voto Medio: {{{vote_average}}}</p>
@@ -53,6 +53,12 @@
       </li>
     </script>
     <!--// TEMPLATE HANDLEBARS -->
+
+    <!-- TEMPLATE NOT FOUND -->
+    <script id="not-found-template" type="text/x-handlebars-template">
+      <li>La ricerca non ha prodotto risultati.</li>
+    </script>
+    <!-- TEMPLATE NOT FOUND -->
 
     <script src="js/script.js" charset="utf-8"></script>
   </body>

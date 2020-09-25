@@ -28,22 +28,27 @@ $(document).ready(function(){
     return language;
   };
 
-  // FUNCTION CALL TO SERVER FOR INFO ABOUT THE MOVIE
-  function renderMovie(searchMovie){
+  // GENERIC CALL API
+  function getData(type, searchString){
 
     $.ajax(
       {
-        "url" : "https://api.themoviedb.org/3/search/movie",
+        "url" : "https://api.themoviedb.org/3/search/"+type,
         "data" : {
           "api_key": "0dc314a9e6f7e554dbdb64c779cd9892",
-          "query": searchMovie,
-          "language": "it"
+          "query": searchString,
+          "language": "type"
         },
         "method" : "GET",
         "success" : function(data){
-          infoSuccess("Film", data.results);
+          if (data.total_results > 0) {
+            infoSuccess(type, data.results);
+          } else {
+            notFound(type);
+          }
+
         },
-        "error" : function() {
+        "error" : function(error) {
           alert("Errore!");
         }
       }
@@ -51,28 +56,6 @@ $(document).ready(function(){
 
   }
 
-  // FUNCTION CALL TO SERVER FOR INFO ABOUT THE TV SERIES
-  function renderSeries(searchSeries){
-
-    $.ajax(
-      {
-        "url" : "https://api.themoviedb.org/3/search/tv",
-        "data" : {
-          "api_key": "0dc314a9e6f7e554dbdb64c779cd9892",
-          "query": searchSeries,
-          "language": "it"
-        },
-        "method" : "GET",
-        "success" : function(data){
-          infoSuccess("Serie Tv", data.results);
-        },
-        "error" : function() {
-          alert("Errore!");
-        }
-      }
-    );
-
-  }
 
   //  FUNCTION HABDLEBARS
   function infoSuccess(type, results){
@@ -81,78 +64,79 @@ $(document).ready(function(){
     var source = $("#info-movie-template").html();
     var template = Handlebars.compile(source);
 
-    // INFO ABOUT THE MOVIE
+    // INFO ABOUT THE MOVIE FROM API
     for (var i = 0; i < ((type, results).length); i++) {
 
-      var title, original_title;
+      var title, original_title, container;
 
-      if(type == "Film"){
+      if(type == "movie"){
         title = results[i].title;
         original_title = results[i].original_title;
-      } else if(type == "Serie Tv"){
+        container = $("#movie");
+      } else if(type == "tv"){
         title = results[i].name;
         original_title = results[i].original_name;
+        container = $("#series");
       }
 
+      // POSTER PRESENTE O NO
+      if(results[i].poster_path == null ){
+       var poster = "img/no-poster.jpg";
+      }else{
+       var poster = "https://image.tmdb.org/t/p/w185"+results[i].poster_path;
+     };
+
       var context = {
+        "poster" : poster,
         "title": title,
         "original_title": original_title,
         "original_language": changeFlag(results[i].original_language),
         "vote_average": stars(results[i].vote_average),
         "type": type,
-        "poster" : results[i].poster_path,
         "overview" : results[i].overview
       };
 
       var html = template(context);
-
-      // img
-       if(results[i].poster_path == null ){
-         var url = "img/no-image.svg";
-       }else{
-         var url = "https://image.tmdb.org/t/p/w185" + results[i].poster_path;
-       };
-       // /img
-
-       if (type == "Film"){
-         $("#movie").append(html);
-       } else {
-         $("#series").append(html);
-
-       }
-
-      $("#search-list").append(html);
+      container.append(html);
 
     }
   }
 
-  // EVENT CLICK ON SEARCH BUTTON
-  $(".btn-search").click(
-    function(){
-      var search = $(".input-title").val();
-      $(".input-title").val("");
-      $("#movie, #series").html("");
-      // PRINT INFO ABOUT THE SEARCH
-      renderMovie(search);
-      renderSeries(search);
+  // la ricerca non produce risultati
+  function notFound(type){
+    alert("La ricerca non ha prodotto risultati")
+  }
 
+
+  // FUNCTION RESEARCH
+  function search(){
+    var search = $("#input-title").val();
+    // CLEAR PAGE
+    resetSearch();
+    // PRINT INFO MOVIE
+    getData("movie", search);
+    // PRINT INFO SERIES
+    getData("tv", search);
+  }
+
+  // FUNCTION RESET SEARCH
+  function resetSearch(){
+    $("#input-title").val("");
+    $("#movie, #series").html("");
+  }
+
+  // EVENT CLICK ON SEARCH BUTTON
+  $("#btn-search").click(
+    function(){
+      search();
     }
   );
 
-  // EVENT KEYDOWN
-  $(".input-title").keydown(
+  // EVENT KEYDOWN FOR SEARCH
+  $("#input-title").keydown(
     function(event) {
       if (event.which ==13){
-        var search = $(".input-title").val();
-        $(".input-title").val(" ");
-        $("#movie, #series").html("");
-
-        // PRINT INFO ABOUT THE SEARCH
-        renderMovie(search);
-        renderSeries(search);
-
-
-
+      search();
       }
     }
   );
