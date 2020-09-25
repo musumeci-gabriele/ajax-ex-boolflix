@@ -30,7 +30,7 @@ $(document).ready(function(){
 
   // GENERIC CALL API
   function getData(type, searchString){
-
+    // call to server
     $.ajax(
       {
         "url" : "https://api.themoviedb.org/3/search/"+type,
@@ -81,9 +81,10 @@ $(document).ready(function(){
 
       // POSTER
       if(results[i].poster_path == null ){
-       var poster = "img/no-poster.jpg";
+       var poster = "img/no_poster.png";
       }else{
        var poster = "https://image.tmdb.org/t/p/w185"+results[i].poster_path;
+
      };
 
       var context = {
@@ -108,8 +109,8 @@ $(document).ready(function(){
     var container;
     if(type == "movie") {
       container = $("#movie");
-    } else if (type == "tv"){
-      container = $("#tv");
+    } else if(type == "tv"){
+      container = $("#series");
     }
 
     // LINK TO HANDLEBARS NOT FOUND
