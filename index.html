@@ -9,6 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
   </head>
 
@@ -17,24 +19,16 @@
     <!-- TOP BAR -->
     <header class="top-bar">
 
-      <div class="title">
-         <h1>BoolFlix</h1>
-       </div>
-
-       <div class="find-title">
-         <input id="input-title" type="text" name="search" placeholder="Search title">
-         <button id="btn-search" type="button" name="btn-search">Search</button>
-       </div>
+        <h1 class="title">BOOLFLIX</h1>
+        <input id="input-title" type="text" name="search" placeholder="Search title">
 
     </header>
     <!-- TOP BAR -->
 
     <!-- SEARCH RESULT -->
     <div class="container-search-result">
-      <h2>Movie</h2>
       <ul id="movie"> </ul>
 
-      <h2>Series</h2>
       <ul id="series"> </ul>
     </div>
     <!--// SEARCH RESULT -->
@@ -42,14 +36,13 @@
     <!-- TEMPLATE HANDLEBARS -->
     <script id="info-movie-template" type="text/x-handlebars-template">
       <li class="info-movie">
-        <h3>Titolo: {{title}}{{name}}</h3>
         <img class ="poster" src="{{poster}}" alt="{{title}}">
-        <h4>Titolo Originale: {{original_title}}</h4>
-        <P>Lingua: {{{original_language}}}</P>
-        <p id="vote-star">Voto Medio: {{{vote_average}}}</p>
-        <p>Genere: {{type}}</p>
-        <p>{{overview}}</p>
-        <br>
+        <!-- <h4>Titolo:</h4><span>{{title}}{{name}}</span> -->
+        <!-- <h4>Titolo Originale:</h4><span>{{original_title}}</span> -->
+        <!-- <P>Lingua: {{{original_language}}}</P> -->
+        <!-- <p id="vote-star">Voto Medio: {{{vote_average}}}</p> -->
+        <!-- <p>Genere: {{type}}</p>
+        <p>{{overview}}</p> -->
       </li>
     </script>
     <!--// TEMPLATE HANDLEBARS -->

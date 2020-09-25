@@ -83,7 +83,7 @@ $(document).ready(function(){
       if(results[i].poster_path == null ){
        var poster = "img/no_poster.png";
       }else{
-       var poster = "https://image.tmdb.org/t/p/w185"+results[i].poster_path;
+       var poster = "https://image.tmdb.org/t/p/w342"+results[i].poster_path;
 
      };
 
@@ -139,12 +139,6 @@ $(document).ready(function(){
     $("#movie, #series").html("");
   }
 
-  // EVENT CLICK ON SEARCH BUTTON
-  $("#btn-search").click(
-    function(){
-      search();
-    }
-  );
 
   // EVENT KEYDOWN FOR SEARCH
   $("#input-title").keydown(
