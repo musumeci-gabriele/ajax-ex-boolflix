@@ -2,57 +2,85 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Boolflix</title>
-    <!-- Handlebars -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.js"></script>
-    <!-- Jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
-
   <body>
+    <div class="container-fluid">
+      <div class="wrapper">
+        <header>
+          <div class="logo">
+            <img src="img/Boolflix_logo.png" alt="">
+          </div>
+          <div class="utility">
+            <input id="text-search" type="text" name="" value="" placeholder="Cerca...">
+            <button class="search" type="button" name="button">Cerca</button>
+          </div>
+        </header>
 
-    <!-- TOP BAR -->
-    <header class="top-bar">
 
-        <h1 class="title">BOOLFLIX</h1>
-        <input id="input-title" type="text" name="search" placeholder="Search title">
 
-    </header>
-    <!-- TOP BAR -->
+        <section class="prewiew">
+          <p><i class="fas fa-video"></i></p>
+          <h1>Cerca i Tuoi Film o Serie Tv Preferite</h1>
+        </section>
 
-    <!-- SEARCH RESULT -->
-    <div class="container-search-result">
-      <ul id="movie"> </ul>
 
-      <ul id="series"> </ul>
+
+        <h2 class="movies-title">Movies</h2>
+
+        <div class="slide film">
+          <ul id="list-movies">
+          </ul>
+          <div class="scroll">
+            <div class="options prima prev"><i class="fas fa-angle-left"></i></div>
+            <div class="options prima next"><i class="fas fa-angle-right"></i></div>
+          </div>
+        </div>
+
+
+        <h2 class="serie">Series</h2>
+        <div class="slide tv">
+          <ul id="list-tv">
+
+          </ul>
+          <div class="scroll">
+            <div class="options seconda prev"><i class="fas fa-angle-left"></i></div>
+            <div class="options seconda next"><i class="fas fa-angle-right"></i></div>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <!--// SEARCH RESULT -->
+  <footer><h2>Copyright 2020</h2></footer>
 
-    <!-- TEMPLATE HANDLEBARS -->
-    <script id="info-movie-template" type="text/x-handlebars-template">
-      <li class="info-movie">
-        <img class ="poster" src="{{poster}}" alt="{{title}}">
-        <!-- <h4>Titolo:</h4><span>{{title}}{{name}}</span> -->
-        <!-- <h4>Titolo Originale:</h4><span>{{original_title}}</span> -->
-        <!-- <P>Lingua: {{{original_language}}}</P> -->
-        <!-- <p id="vote-star">Voto Medio: {{{vote_average}}}</p> -->
-        <!-- <p>Genere: {{type}}</p>
-        <p>{{overview}}</p> -->
-      </li>
-    </script>
-    <!--// TEMPLATE HANDLEBARS -->
+  <script id="movie-template" type="text/x-handlebars-template">
+    <li class="movie" data-id="{{id}}">
+      <img class="poster" src="{{{poster_path}}}" alt="">
+      <div class="info">
+      <h3>{{title}} </h3>
+      <h3>{{media_type}}</h3>
+      <h3 id="titolo-originale">Titolo Originale: {{title_orginal}} {{title_original}}</h4>
+      <p>Lingua Originale: {{{lang}}} </p>
+      <p class="test"> Voto: <span class="stelle"> {{{vote}}} </span></p>
+      <h5>Cast</h5>
+      <ul class="cast"></ul>
+      <h5>Generi</h5>
+      <ul class="genres"></ul>
+      </div>
+    </li>
+  </script>
 
-    <!-- TEMPLATE NOT FOUND -->
-    <script id="not-found-template" type="text/x-handlebars-template">
-      <li>La ricerca non ha prodotto risultati.</li>
-    </script>
-    <!-- TEMPLATE NOT FOUND -->
+  <script id="cast-template" type="text/x-handlebars-template">
+    <li>{{name}}</li>
+  </script>
 
-    <script src="js/script.js" charset="utf-8"></script>
+  <script src="js/script.js" charset="utf-8"></script>
   </body>
 </html>
