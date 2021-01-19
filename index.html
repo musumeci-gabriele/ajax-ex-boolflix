@@ -14,27 +14,27 @@
   <body>
     <div class="container-fluid">
       <div class="wrapper">
+        <!-- Logo e Searchbar -->
         <header>
           <div class="logo">
             <img src="img/logo.png" alt="Logo">
           </div>
           <div class="utility">
-            <input id="text-search" type="text" name="" value="" placeholder="Cerca...">
+            <input id="text-search" type="text" name="" value="" placeholder="Cerca">
             <button class="search" type="button" name="button">Cerca</button>
           </div>
         </header>
+        <!-- Logo e Searchbar End -->
 
-
-
+        <!-- Title -->
         <section class="prewiew">
           <p><i class="fas fa-video"></i></p>
           <h1>Cerca i Tuoi Film o Serie Tv Preferite</h1>
         </section>
+        <!-- Title End -->
 
-
-
+        <!-- Box Poster Movies -->
         <h2 class="movies-title">Movies</h2>
-
         <div class="slide film">
           <ul id="list-movies">
           </ul>
@@ -43,39 +43,45 @@
             <div class="options prima next"><i class="fas fa-angle-right"></i></div>
           </div>
         </div>
+        <!-- Box Poster Movies End -->
 
-
+        <!-- Box Poster Series -->
         <h2 class="serie">Series</h2>
         <div class="slide tv">
           <ul id="list-tv">
-
           </ul>
           <div class="scroll">
             <div class="options seconda prev"><i class="fas fa-angle-left"></i></div>
             <div class="options seconda next"><i class="fas fa-angle-right"></i></div>
           </div>
         </div>
+        <!-- Box Poster Series End -->
 
       </div>
     </div>
-  <footer><h2>Copyright 2020</h2></footer>
+    
+  <footer>
+    <h2>Copyright 2020</h2>
+  </footer>
 
+  <!-- Handlebars -->
   <script id="movie-template" type="text/x-handlebars-template">
     <li class="movie" data-id="{{id}}">
       <img class="poster" src="{{{poster_path}}}" alt="">
       <div class="info">
-      <h3>{{title}} </h3>
-      <h3>{{media_type}}</h3>
-      <h3 id="titolo-originale">Titolo Originale: {{title_orginal}} {{title_original}}</h4>
-      <p>Lingua Originale: {{{lang}}} </p>
-      <p class="test"> Voto: <span class="stelle"> {{{vote}}} </span></p>
-      <h5>Cast</h5>
-      <ul class="cast"></ul>
-      <h5>Generi</h5>
-      <ul class="genres"></ul>
+        <h3>{{title}} </h3>
+        <h3>{{media_type}}</h3>
+        <h3 id="titolo-originale">Titolo Originale: {{title_orginal}} {{title_original}}</h3>
+        <p>Lingua Originale: {{{lang}}} </p>
+        <p class="test"> Voto: <span class="stars"> {{{vote}}} </span></p>
+        <h5>Cast</h5>
+        <ul class="cast"></ul>
+        <h5>Generi</h5>
+        <ul class="genres"></ul>
       </div>
     </li>
   </script>
+  <!-- Handlebars End -->
 
   <script id="cast-template" type="text/x-handlebars-template">
     <li>{{name}}</li>
